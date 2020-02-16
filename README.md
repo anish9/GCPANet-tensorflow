@@ -15,5 +15,6 @@ OpenCV
 
 ### Inference
 > run infer.py loading the pretrained model 
-``` python3 infer.py my_random_image.jpeg
+``` 
+python3 infer.py my_random_image.jpeg
 ```
