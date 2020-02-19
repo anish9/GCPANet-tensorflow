@@ -5,7 +5,7 @@ config_map = {"data_root"        : "/home/anish/anish/GCPAnet/DUT_BENCH/",
        	      "warmup"           : 5,
        	      "learning_rate"    : 1e-5,
        	      "dim"              : 416, 
-       	      "batch"            : 3,
+       	      "batch"            : 8,
        	      "tbl"              : "./logs"
        	      }
 
