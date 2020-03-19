@@ -16,33 +16,36 @@ def self_refinement(inps,d):
     out = Activation("relu")(out)
     return out
 
-
 def head_attention(inps):
-    x1 = Conv2D(256,3,padding="same")(inps)
-    x1 = BatchNormalization(axis=-1)(x1)
-    x1 = Activation("relu")(x1)
-    x2 = Conv2D(512,3,padding="same")(x1)
-    w,b = tf.split(x2,2,axis=-1)
-    out = Multiply()([x1,w])
-    out = Add()([out,b])
-    F   = Activation("relu")(out)
-    ave = tf.math.reduce_mean(F,axis=-1)
-    ave = Dense(256,activation="relu")(ave)
-    Fn  = Dense(256,activation="sigmoid")(ave)
-    out = Multiply()([F,Fn])
-    return out
+	x1 = Conv2D(256,3,padding="same")(inps)
+	x1 = BatchNormalization(axis=-1)(x1)
+	x1 = Activation("relu")(x1)
+	x2 = Conv2D(512,3,padding="same")(x1)
+	w,b = tf.split(x2,2,axis=-1)
+	out = Multiply()([x1,w])
+	out = Add()([out,b])
+	F   = Activation("relu")(out)
+	ave = tf.math.reduce_mean(F,axis=-1)
+	ave = tf.expand_dims(ave,axis=-1)
+	
+	ave = Conv2D(256,1,padding="same",activation="relu")(ave)
+	Fn  = Conv2D(256,1,padding="same",activation="sigmoid")(ave)
+	out = Multiply()([F,Fn])
+	return out
 
 
 def GCF(inps):
-    x1 = Conv2D(256,3,padding="same")(inps)
-    x1 = BatchNormalization(axis=-1)(x1)
-    x1 = Activation("relu")(x1)
-    
-    gap = tf.math.reduce_mean(x1,axis=-1)
-    gap = Dense(256,activation="relu")(gap)
-    gap = Dense(256,activation="sigmoid")(gap)
-    out = Multiply()([gap,x1])
-    return out
+	x1 = Conv2D(256,3,padding="same")(inps)
+	x1 = BatchNormalization(axis=-1)(x1)
+	x1 = Activation("relu")(x1)
+	
+	gap = tf.math.reduce_mean(x1,axis=-1)
+	gap = tf.expand_dims(gap,axis=-1)
+	gap = Conv2D(256,1,padding="same",activation="relu")(gap)
+	gap = Conv2D(256,1,padding="same",activation="sigmoid")(gap)
+
+	out = Multiply()([gap,x1])
+	return out
 
 
 def FIA(hin,gin,tin,ft):
