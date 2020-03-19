@@ -18,4 +18,4 @@ OpenCV
 ``` 
 python3 infer.py my_random_image.jpeg
 ```
-> [download pretrained model](https://drive.google.com/open?id=1s9cwxtlNM2dr9X5KGS4KEgA1Z_CQKgVM)
+> [download pretrained model](https://drive.google.com/open?id=1yOrGI-zTRqa34YzjlnOZPTq5oh00CVtY)
