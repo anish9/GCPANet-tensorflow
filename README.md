@@ -1,3 +1,7 @@
+# NOTE:
+### Tensorflow 2.2 version of the repo is available
+## [Tensorflow2.2 GCPAnet](https://github.com/anish9/GCPAnet-tensorflow2.2)
+
 # GCPAnet-tf keras
 #### Unofficial implementation of [GCPAnet](https://github.com/JosephChenHub/GCPANet/blob/master/GCPANet.pdf) in tensorflow-2.0-alpha
 
